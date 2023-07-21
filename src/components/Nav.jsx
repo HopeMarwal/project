@@ -28,6 +28,7 @@ export default function Nav({ navData }) {
       </div>
 
       {/* Menu */}
+      <div className={`${isMenuOpen && 'open'} dark-modal`}></div>
         <NavMenu 
           navData={navData}
           isMenuOpen={isMenuOpen}

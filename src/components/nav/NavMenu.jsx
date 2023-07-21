@@ -1,7 +1,7 @@
 export default function NavMenu({ navData, setIsMenuOpen, isMenuOpen }) {
   return (
     <div className={`${isMenuOpen && 'open'} menu`}>
-
+      
       {/* Header */}
       <div className='menu-header'>
         <button onClick={() => setIsMenuOpen(false)}>
