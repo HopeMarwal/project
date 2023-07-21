@@ -1,4 +1,5 @@
 import img from '../../assets/icons/image.png'
+
 export default function ShowPrice({ total }) {
   return (
     <div className='show-price'>

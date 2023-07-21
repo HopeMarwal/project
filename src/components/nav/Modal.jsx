@@ -1,5 +1,5 @@
 import { useState } from "react"
-import close from '../assets/icons/close.svg'
+import close from '../../assets/icons/close.svg'
 
 export default function Modal({ flag, setIsModalOpen, setModalFlag }) {
   return (
@@ -19,6 +19,7 @@ export default function Modal({ flag, setIsModalOpen, setModalFlag }) {
   )
 }
 
+// SignIn component
 const SingIn = ({ setModalFlag, setIsModalOpen }) => {
   const [loginData, setLoginData] = useState({
     email: '',
@@ -39,6 +40,7 @@ const SingIn = ({ setModalFlag, setIsModalOpen }) => {
         </button>
       </div>
 
+      {/* Click to move to SingUp component */}
       <div className="modal-body">
         <span>Nu ai un cont?</span> {` `}
         <button onClick={() => setModalFlag('singUp')}>
@@ -47,6 +49,7 @@ const SingIn = ({ setModalFlag, setIsModalOpen }) => {
       </div>
 
       <form action="/" onSubmit={(e) => handleSubmit(e)}>
+        {/* Email */}
         <input
           placeholder="Email"
           required
@@ -54,6 +57,7 @@ const SingIn = ({ setModalFlag, setIsModalOpen }) => {
           value={loginData.email}
           onChange={(e) => setLoginData({...loginData, email: e.target.value})}
         />
+        {/* Password */}
         <input
           placeholder="Parola"
           required
@@ -75,6 +79,7 @@ const SingIn = ({ setModalFlag, setIsModalOpen }) => {
   )
 }
 
+// SignUp component
 const SingUp = ({ setModalFlag, setIsModalOpen }) => {
   const [regData, setRegData] = useState({
     email: '',
@@ -97,6 +102,7 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
         </button>
       </div>
 
+      {/* Click on btn to move to SingIn component */}
       <div className="modal-body">
         <span>Deja ai un cont?</span> {` `}
         <button onClick={() => setModalFlag('singIn')}>
@@ -105,6 +111,7 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
       </div>
 
       <form action="/" onSubmit={(e) => handleSubmit(e)}>
+        {/* Email */}
         <input
           placeholder="Email"
           required
@@ -112,6 +119,8 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
           value={regData.email}
           onChange={(e) => setRegData({...regData, email: e.target.value})}
         />
+
+        {/* Password */}
         <input
           placeholder="Parola"
           required
@@ -121,6 +130,7 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
           onChange={(e) => setRegData({...regData, password: e.target.value})}
         />
 
+        {/* Confirm Password */}
         <input
           placeholder="Confirmă parola"
           required
@@ -130,6 +140,7 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
           onChange={(e) => setRegData({...regData, confirmPass: e.target.value})}
         />    
 
+        {/* Terms */}
         <label className="custom-checkbox">
           <input
             type="checkbox"
@@ -140,12 +151,10 @@ const SingUp = ({ setModalFlag, setIsModalOpen }) => {
           <p>Sunt de acord cu <a href='/'>Termenii și condițiile</a> site-ului</p>
         </label>
         
-
         <button className="btn btn-login">
           Înregistrare
         </button>
       </form>
-      
       
     </div>
   )

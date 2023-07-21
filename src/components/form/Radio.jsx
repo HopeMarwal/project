@@ -10,9 +10,11 @@ export default function Radio({ checked, handleChange, item, classTitle, name, i
         name={name}
         value={item}
       />
+      {/* Display values based in props */}
       {span && <span></span>}
       {img && <img src={img} alt={item}/>}
       {line && <div className='line'></div>}
+      
       <p>{item}</p>
     </label>
   )

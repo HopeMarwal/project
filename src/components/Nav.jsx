@@ -1,41 +1,26 @@
-import { useEffect, useState } from 'react'
+//React
+import { useState } from 'react'
+//Style
 import '../assets/styles/nav.scss'
-import Modal from './Modal'
+//Components
+import Modal from './nav/Modal'
+import NavMenu from './nav/NavMenu'
 
-export default function Nav() {
-  const [navData, setNavData] = useState(null)
+export default function Nav({ navData }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalFlag, setModalFlag] = useState('')
 
   //Auth session 
   const session = null
   
-  useEffect(() => {
-      const dataFetch = async () => {
-        const data = await (
-          await fetch(
-            "https://my-json-server.typicode.com/HopeMarwal/project_test/nav"
-          )
-        ).json();
-  
-        // set state when the data received
-        setNavData(data);
-      };
-  
-      dataFetch();
-  }, [])
-
   const handleModal = (flag) => {
     setModalFlag(flag)
     setIsModalOpen(true)
   }
 
-
   return (
     <nav>
-
       <div className='burger-btn'>
         <button onClick={() => setIsMenuOpen(true)}>
           <img src={navData?.burgerBtn} alt='open menu button'/>
@@ -43,55 +28,21 @@ export default function Nav() {
       </div>
 
       {/* Menu */}
-      {isMenuOpen && 
-        <div className='menu'>
-          <div className='menu-header'>
-            <button onClick={() => setIsMenuOpen(false)}>
-              <img src={navData?.closeBtn} alt='close menu button' />
-            </button>
-            <h2>Menu</h2>
-          </div>
+        <NavMenu 
+          navData={navData}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
 
-          <ul className="menu-body">
-            {
-              navData?.menu.map((item) => (
-                // Enable router to push link 
-                <li className='menu_item' key={item.id}>
-                  <img src={item.img} alt={item.text} />
-                  <p>{item.text}</p>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div className="lang">
-            <p>Рус</p>|
-            <p>Ro</p>
-          </div>
-
-          <div className='menu-footer'>
-            {
-              navData?.contacts.map((item) => (
-                <div key={item.value}>
-                  <img src={item.icon} alt='contact' />
-                  <p>{item.value}</p>
-                </div>
-              ))
-            }
-          </div>
-
-        </div>
-
-      }
-
+      {/* Nav Bar */}
       <div className="logo">
-        <img src={navData?.logoBtn} alt='minicode logo' />
+        <a href="/">
+          <img src={navData?.logoBtn} alt='minicode logo' />
+        </a>
       </div>
 
       <div className="line"></div>
-
       <h3> {navData?.heading} </h3>
-
       <div className="line"></div>
 
       {/* If logged in display log out btn*/}
@@ -109,10 +60,13 @@ export default function Nav() {
           </div>
         </div>
       }
-      {
-        isModalOpen && <Modal flag={modalFlag} setIsModalOpen={setIsModalOpen} setModalFlag={setModalFlag}/>
+      {isModalOpen && 
+        <Modal
+          flag={modalFlag}
+          setIsModalOpen={setIsModalOpen}
+          setModalFlag={setModalFlag}
+        />
       }
-      
     </nav>
   )
 }

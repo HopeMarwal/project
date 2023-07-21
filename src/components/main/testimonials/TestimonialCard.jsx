@@ -3,6 +3,7 @@ import StarRatings from "react-star-ratings"
 export default function TestimonialCard({ data }) {
   return (
     <div className='testimonial-card'>
+      
       <div className='image'>
         <img src={data.photo} alt={data.name} />
       </div>
@@ -16,7 +17,6 @@ export default function TestimonialCard({ data }) {
           starSpacing="2px"
           starRatedColor="#E8A412"
           starEmptyColor="#E7E5E4"
-          
         />
         <p className='text'>{data.text}</p>
       </div>

@@ -1,7 +1,6 @@
 // import the hook and options type
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
 import { PropsWithChildren, useCallback, useEffect, useState} from "react";
-//import CarouselControls from "./CarouselControls";
 import { DotButton } from "./CarouselDots";
 
 // Define the props
@@ -50,8 +49,6 @@ const Carousel = ({ children, ...options }: Props) => {
     (index) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   )
-
-  
 
 
   return (

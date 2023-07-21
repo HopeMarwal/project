@@ -19,9 +19,12 @@ export default function Select({ title, value, mapItems, handleChange, prop }) {
         value={value}
         readOnly
       />
+
+      {/* Map select options */}
       <div className={`${isOptionsOpen && 'open'} dropdown`}>
         {
           mapItems.map((item) => {
+            // Check if typeOf item is object
             if(item.name) {
               return (
                 <button

@@ -1,0 +1,75 @@
+@import './var';
+
+footer {
+  background-color: $burgundy;
+  padding: 80px 0px;
+} 
+
+.footer-container {
+  display: flex;
+  max-width: 1300px;
+  margin: auto;
+  height: 392px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 130px;
+  flex-shrink: 0;
+  color: $white;
+  .flex {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  // Logo div
+  .logo {
+    display: flex;
+    max-width: 310px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    flex-shrink: 0;
+    img { width: 160px; }
+  }
+  p {
+    font-family: $root;
+    font-size: $parD;
+    color: $white;
+    font-weight: 400;
+  }
+  
+  .companie, .contact, .social {
+    gap: 30px;
+  }
+  //Companie div
+  h5 { color: $white;}
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  a {
+    color: $white;
+    font-family: $root;
+    transition: all 0.2s ease-in;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  //Contact div
+  .contact_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  //Social div
+  .social_container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 150px;
+    
+  }
+}

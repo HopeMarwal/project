@@ -1,4 +1,4 @@
-import arrow from '../assets/icons/arrow.svg'
+import arrow from '../../assets/icons/arrow.svg'
 
 export default function OfertaCard({ data }) {
   return (
@@ -8,10 +8,13 @@ export default function OfertaCard({ data }) {
     <div className="oferta-card_body">
       <h4>{data.title}</h4>
       <p>{data.desc}</p>
+
+      {/* Vezi mai mult btn */}
       <a href="/">
         {data.link}
         <img src={arrow} alt={data.link} />
       </a>
+
     </div>
 
   </div>

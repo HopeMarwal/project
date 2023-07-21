@@ -3,18 +3,18 @@ import '../../assets/styles/main/rca.scss'
 import ShowPrice from './ShowPrice'
 import Accordion from './Accordion'
 import Radio from '../form/Radio'
+import ButtonsControl from './ButtonsControl'
 
 
 export default function GreenCard({data, step, setStep, setTotalSteps}) {
-  
-  const [ forwardBtn, setForwardBtn ] = useState('Inainte')
-
-  const [formData, setFormData] = useState({
+  const [ showPrice, setShowPrice ] = useState(false)
+  const [ formData, setFormData ] = useState({
     type: '',
     zona: '',
     valabil: ''
   })
 
+  // Set steps to progress bar
   useEffect(() => {
     let arr = []
 
@@ -28,35 +28,11 @@ export default function GreenCard({data, step, setStep, setTotalSteps}) {
     return(() => {
       setTotalSteps([])
     })
-    
+    // eslint-disable-next-line 
   }, [data.progress.length])
 
   const handleChangeFormValues = (prop, value) => {
     setFormData({...formData, [prop]: value})
-  }
-
-  const handleChangeStep = (direc) => {
-    if(direc === 'back') {
-      setStep(prev => prev - 1)
-      setForwardBtn('Inainte')
-    } else {
-      switch (true) {
-        case (forwardBtn === 'Comandă și achită online'):
-          break;
-        case (forwardBtn === 'Vezi costul'):
-          setForwardBtn('Comandă și achită online')
-          break;
-        case (step === data.progress.length - 1):
-          setStep(prev => prev + 1)
-          setForwardBtn('Vezi costul')
-          break;
-        case (step < data.progress.length):
-          setStep(prev => prev + 1)
-          break;
-        default: return
-
-      }
-    }
   }
 
   return (
@@ -121,31 +97,27 @@ export default function GreenCard({data, step, setStep, setTotalSteps}) {
           </div>
           
           {/* Show price */}
-          {forwardBtn === 'Comandă și achită online' && <ShowPrice total='267' /> }
+          {showPrice && <ShowPrice total='267' /> }
 
         </div>
       }
 
     </form>
-    <div className='step-btns'>
-      <button
-        className='btn btn-outline'
-        onClick={() => handleChangeStep('back')}
-        disabled={step === 1}
-      >
-        Inapoi
-      </button>
-      <button
-        disabled = { (step === 1 && !formData.type ) || (step === 2 && (!formData.zona || !formData.valabil) ) }
-        className='btn'
-        onClick={(e) => handleChangeStep('forward', e.target.value)}
-      >
-        {forwardBtn}
-      </button>
-    </div>
+
+    <ButtonsControl
+      prevDis={step === 1}
+      nextDis={ (step === 1 && !formData.type ) || (step === 2 && (!formData.zona || !formData.valabil) ) }
+      step={step}
+      totalSteps={data.progress.length}
+      setStep={setStep}
+      setShowPrice={setShowPrice}
+    />
     </div>
 
-    <Accordion obiect={data.object} riscs={data.riscs}/>
+    <div className="w-50 mt-70">
+      <Accordion data={data.object} title='Obiectul asigurării'/>
+      <Accordion data={data.riscs} title='Riscuri și obligațiuni'/>
+    </div>
 
     
 
