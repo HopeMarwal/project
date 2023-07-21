@@ -39,7 +39,7 @@ export default function Footer({ footerData }) {
             <a href={`tel:${footerData?.contacts.phone_2}`}>
               {footerData?.contacts.phone_2}
             </a>
-            <p>{footerData?.contacts.address}</p>
+            <a href='/'>{footerData?.contacts.address}</a>
           </div>
 
         </div>
